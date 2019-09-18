@@ -11,36 +11,37 @@ import PersonalScreen from '../pages/personal'
 const StatusBarHeight = 44 + parseInt(Platform.OS === 'ios' ? 0 : StatusBar.currentHeight)
 const navigationOptions = {
 	headerTransparent: false,
-	// headerBackground: <Image style={{backgroundColor:Colors.headerBg,flex:1,width:'100%'}} resizeMode='stretch' source={require('../assets/images/nav_bg.png')} />,
 	headerStyle: {
 		height: StatusBarHeight,
-		backgroundColor: 'red',
+		backgroundColor: '#fff',
 		borderBottomWidth: 0,
 		elevation: 0,
 		shadowOpacity: 0
 	},
 	headerTitleStyle: {
-		fontSize: 18,
+		fontSize: 32,
 		flex: 1,
 		textAlign: 'center'
 	},
-	headerTintColor: 'red',
+	headerTintColor: '#000',
 }
 
 // 首页tab
 const HomeStack = createStackNavigator({
   Home: {
-		screen: HomeScreen,
-    navigationOptions
+	screen: HomeScreen,
+    navigationOptions: {
+		header: null
+	}
   }
 })
 HomeStack.navigationOptions = {
   tabBarLabel: '首页',
   tabBarIcon: ({focused}) => (
-			<Image
-				source={focused ? require('../assets/images/tab-a-a.png') : require('../assets/images/tab-a.png')}
-        style={{width: 21, height: 20}}
-			/>
+	<Image
+		source={focused ? require('../assets/images/tab-a-a.png') : require('../assets/images/tab-a.png')}
+		style={{width: 38, height: 40}}
+	/>
   )
 }
 // 收藏tab
@@ -55,7 +56,7 @@ CollectionStack.navigationOptions = {
 	tabBarIcon: ({focused}) => (
 		<Image
 			source={focused ? require('../assets/images/tab-b-a.png') : require('../assets/images/tab-b.png')}
-			style={{width: 20, height: 20}}
+			style={{width: 40, height: 39}}
 		/>
 	)
 }
@@ -63,7 +64,10 @@ CollectionStack.navigationOptions = {
 const InformationStack = createStackNavigator({
 	Persnal: {
 		screen: InformationScreen,
-		navigationOptions
+		navigationOptions: {
+			...navigationOptions,
+			title: '消息'
+		}
 	}
 })
 InformationStack.navigationOptions = {
@@ -71,7 +75,7 @@ InformationStack.navigationOptions = {
 	tabBarIcon: ({focused}) => (
 		<Image
 			source={focused ? require('../assets/images/tab-c-a.png') : require('../assets/images/tab-c.png')}
-			style={{width: 20, height: 20}}
+			style={{width: 40, height: 40}}
 		/>
 	)
 }
@@ -79,15 +83,18 @@ InformationStack.navigationOptions = {
 const PersonalStack = createStackNavigator({
 	Persnal: {
 		screen: PersonalScreen,
-		navigationOptions
+		navigationOptions: {
+			...navigationOptions,
+			title: '个人中心'
+		}
 	}
 })
 PersonalStack.navigationOptions = {
-	tabBarLabel: '个人中心',
+	tabBarLabel: '我的',
 	tabBarIcon: ({focused}) => (
 		<Image
 			source={focused ? require('../assets/images/tab-d-a.png') : require('../assets/images/tab-d.png')}
-			style={{width: 18, height: 20}}
+			style={{width: 36, height: 40}}
 		/>
 	)
 }
@@ -99,6 +106,13 @@ export default createBottomTabNavigator({
 	PersonalStack,
 }, {
   tabBarOptions: {
+	style: {
+		height: 98
+	},
+	labelStyle: {
+		marginTop: -20,
+		fontSize: 20
+	},
     activeTintColor: '#59c3f7',
     inactiveTintColor: '#b6b6c0',
   }

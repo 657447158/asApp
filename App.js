@@ -6,26 +6,27 @@
  * @flow
  */
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
-  Text,
   StatusBar,
 } from 'react-native';
 import RootNavigator from './src/navigation/RootNavigator'
-
+import Resolution from "./src/utils/resolution"
 
 const App = () => {
   return (
-    <RootNavigator />
+    <View style={{flex: 1}}>
+      <StatusBar
+        translucent={true}
+        backgroundColor={'transparent'}
+        barStyle={'dark-content'}
+      />
+      <Resolution.FixWidthView>
+        <RootNavigator />
+      </Resolution.FixWidthView>
+    </View>
   )
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default App;
