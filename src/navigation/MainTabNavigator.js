@@ -8,6 +8,8 @@ import CollectionScreen from '../pages/collection'
 import InformationScreen from '../pages/information'
 import PersonalScreen from '../pages/personal'
 
+import { scaleSize, scaleHeight, px2dp } from '../utils/ScreenUtils';
+
 const StatusBarHeight = 44 + parseInt(Platform.OS === 'ios' ? 0 : StatusBar.currentHeight)
 const navigationOptions = {
 	headerTransparent: false,
@@ -19,9 +21,10 @@ const navigationOptions = {
 		shadowOpacity: 0
 	},
 	headerTitleStyle: {
-		fontSize: 32,
+		fontSize: px2dp(32),
 		flex: 1,
-		textAlign: 'center'
+		textAlign: 'center',
+		fontWeight: 'bold'
 	},
 	headerTintColor: '#000',
 }
@@ -40,7 +43,7 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({focused}) => (
 	<Image
 		source={focused ? require('../assets/images/tab-a-a.png') : require('../assets/images/tab-a.png')}
-		style={{width: 38, height: 40}}
+		style={{width: scaleSize(38), height: scaleHeight(40)}}
 	/>
   )
 }
@@ -48,7 +51,9 @@ HomeStack.navigationOptions = {
 const CollectionStack = createStackNavigator({
 	Persnal: {
 		screen: CollectionScreen,
-		navigationOptions
+		navigationOptions: {
+			header: null
+		}
 	}
 })
 CollectionStack.navigationOptions = {
@@ -56,7 +61,7 @@ CollectionStack.navigationOptions = {
 	tabBarIcon: ({focused}) => (
 		<Image
 			source={focused ? require('../assets/images/tab-b-a.png') : require('../assets/images/tab-b.png')}
-			style={{width: 40, height: 39}}
+			style={{width: scaleSize(40), height: scaleHeight(39)}}
 		/>
 	)
 }
@@ -66,7 +71,7 @@ const InformationStack = createStackNavigator({
 		screen: InformationScreen,
 		navigationOptions: {
 			...navigationOptions,
-			title: '消息'
+			title: '消息中心'
 		}
 	}
 })
@@ -75,7 +80,7 @@ InformationStack.navigationOptions = {
 	tabBarIcon: ({focused}) => (
 		<Image
 			source={focused ? require('../assets/images/tab-c-a.png') : require('../assets/images/tab-c.png')}
-			style={{width: 40, height: 40}}
+			style={{width: scaleSize(40), height: scaleHeight(40)}}
 		/>
 	)
 }
@@ -84,7 +89,21 @@ const PersonalStack = createStackNavigator({
 	Persnal: {
 		screen: PersonalScreen,
 		navigationOptions: {
-			...navigationOptions,
+			headerTransparent: true,
+			headerStyle: {
+				height: StatusBarHeight,
+				backgroundColor: 'transparent',
+				borderBottomWidth: 0,
+				elevation: 0,
+				shadowOpacity: 0
+			},
+			headerTitleStyle: {
+				fontSize: px2dp(32),
+				flex: 1,
+				textAlign: 'center',
+				fontWeight: 'bold'
+			},
+			headerTintColor: '#fff',
 			title: '个人中心'
 		}
 	}
@@ -94,7 +113,7 @@ PersonalStack.navigationOptions = {
 	tabBarIcon: ({focused}) => (
 		<Image
 			source={focused ? require('../assets/images/tab-d-a.png') : require('../assets/images/tab-d.png')}
-			style={{width: 36, height: 40}}
+			style={{width: scaleSize(36), height: scaleHeight(40)}}
 		/>
 	)
 }
@@ -107,11 +126,11 @@ export default createBottomTabNavigator({
 }, {
   tabBarOptions: {
 	style: {
-		height: 98
+		height: scaleHeight(98)
 	},
 	labelStyle: {
-		marginTop: -20,
-		fontSize: 20
+		marginTop: -scaleHeight(20),
+		fontSize: px2dp(20)
 	},
     activeTintColor: '#59c3f7',
     inactiveTintColor: '#b6b6c0',

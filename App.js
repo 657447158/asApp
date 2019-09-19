@@ -12,7 +12,6 @@ import {
   StatusBar,
 } from 'react-native';
 import RootNavigator from './src/navigation/RootNavigator'
-import Resolution from "./src/utils/resolution"
 
 const App = () => {
   return (
@@ -22,9 +21,7 @@ const App = () => {
         backgroundColor={'transparent'}
         barStyle={'dark-content'}
       />
-      <Resolution.FixWidthView>
-        <RootNavigator />
-      </Resolution.FixWidthView>
+      <RootNavigator />
     </View>
   )
 };
