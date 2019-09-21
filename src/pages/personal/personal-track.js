@@ -58,13 +58,13 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         zIndex: 9,
-        paddingTop: StatusBarHeight,
+        // paddingTop: StatusBarHeight,
         paddingLeft: scaleSize(40),
         paddingRight: scaleSize(40),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: scaleSize(84) + StatusBarHeight,
+        height: scaleSize(116),
         backgroundColor: '#fff'
     },
     serachBox: {
@@ -73,9 +73,9 @@ const styles = StyleSheet.create({
         paddingLeft: scaleSize(32),
         paddingRight: scaleSize(32),
         width: scaleSize(590),
-        height: scaleSize(56),
+        height: scaleSize(68),
         backgroundColor: '#f7f7f7',
-        borderRadius: scaleSize(28),
+        borderRadius: scaleSize(34),
     },
     searchIcon: {
         width: scaleSize(22),

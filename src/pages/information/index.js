@@ -1,30 +1,44 @@
 import React, { Component } from 'react'
-import { View, Text, Image, ScrollView, StyleSheet } from 'react-native'
+import { View, Text, Image, FlatList, StyleSheet } from 'react-native'
 import { scaleSize, px2dp } from '../../utils/ScreenUtils';
 
 export default class Information extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            datasList: [{key: 'a'}]
+        }
+    }
+    getItem = () => {
+        return (
+            <View style={styles.itemBox}>
+                <View style={styles.avatorBox}>
+                    <Image style={styles.avator} source={require('../../assets/images/information/icon-sy.png')} />
+                </View>
+                <View style={styles.rightCt}>
+                    <Text style={styles.label}>系统消息</Text>
+                    <Text style={styles.time}>星期二 12:47</Text>
+                </View>
+            </View>
+            // <View style={styles.itemBox}>
+            //     <View style={[styles.avatorBox, styles.avatorBox1]}>
+            //         <Image style={styles.avator1} source={require('../../assets/images/information/icon-zz.png')} />
+            //     </View>
+            //     <View style={styles.rightCt}>
+            //         <Text style={styles.label}>标准跟踪消息</Text>
+            //         <Text style={styles.time}>2019/07/30 15:58</Text>
+            //     </View>
+            // </View>
+        )
+    }
+
     render () {
         return (
-            <ScrollView style={{flex: 1}}>
-                <View style={styles.itemBox}>
-                    <View style={styles.avatorBox}>
-                        <Image style={styles.avator} source={require('../../assets/images/information/icon-sy.png')} />
-                    </View>
-                    <View style={styles.rightCt}>
-                        <Text style={styles.label}>系统消息</Text>
-                        <Text style={styles.time}>星期二 12:47</Text>
-                    </View>
-                </View>
-                <View style={styles.itemBox}>
-                    <View style={[styles.avatorBox, styles.avatorBox1]}>
-                        <Image style={styles.avator1} source={require('../../assets/images/information/icon-zz.png')} />
-                    </View>
-                    <View style={styles.rightCt}>
-                        <Text style={styles.label}>标准跟踪消息</Text>
-                        <Text style={styles.time}>2019/07/30 15:58</Text>
-                    </View>
-                </View>
-            </ScrollView>
+            <FlatList
+                style={{flex: 1}}
+                data={this.state.datasList}
+                renderItem={this.getItem}
+            />
         )
     }
 }

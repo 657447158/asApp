@@ -76,24 +76,36 @@ export default class Personal extends Component {
                             <Image style={styles.navNext} source={require('../../assets/images/personal/icon-next-b.png')} />
                             <View style={styles.navLine}></View>
                         </TouchableOpacity>
-                        <View style={styles.navItem}>
+                        <TouchableOpacity
+                            activeOpacity={.8}
+                            style={styles.navItem}
+                            onPress={this.navigateTo.bind(this, 'PersonalTrack')}
+                        >
                             <Image style={{width: scaleSize(46), height: scaleSize(46)}} source={require('../../assets/images/personal/icon-follow.png')} />
                             <Text style={styles.navText}>标准跟踪</Text>
                             <Image style={styles.navNext} source={require('../../assets/images/personal/icon-next-b.png')} />
                             <View style={styles.navLine}></View>
-                        </View>
-                        <View style={styles.navItem}>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={.8}
+                            style={styles.navItem}
+                            onPress={this.navigateTo.bind(this, 'PersonalCompany')}
+                        >
                             <Image style={{width: scaleSize(42), height: scaleSize(45)}} source={require('../../assets/images/personal/icon-custom.png')} />
                             <Text style={styles.navText}>企业用户</Text>
                             <Image style={styles.navNext} source={require('../../assets/images/personal/icon-next-b.png')} />
                             <View style={styles.navLine}></View>
-                        </View>
-                        <View style={styles.navItem}>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={.8}
+                            style={styles.navItem}
+                            onPress={this.navigateTo.bind(this, 'PersonalRecharge')}
+                        >
                             <Image style={{width: scaleSize(44), height: scaleSize(44)}} source={require('../../assets/images/personal/icon-recharge.png')} />
                             <Text style={styles.navText}>充值记录</Text>
                             <Image style={styles.navNext} source={require('../../assets/images/personal/icon-next-b.png')} />
                             <View style={styles.navLine}></View>
-                        </View>
+                        </TouchableOpacity>
                         <View style={styles.navItem}>
                             <Image style={{width: scaleSize(45), height: scaleSize(45)}} source={require('../../assets/images/personal/icon-invoice.png')} />
                             <Text style={styles.navText}>开票记录</Text>

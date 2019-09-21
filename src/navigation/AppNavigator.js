@@ -1,12 +1,15 @@
 import React from 'react';
-import { Platform, StatusBar } from 'react-native';
+import { Text, Platform, StatusBar } from 'react-native';
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
-import { px2dp } from '../utils/ScreenUtils';
+import { scaleSize, px2dp } from '../utils/ScreenUtils';
 import MainTabNavigator from './MainTabNavigator';
 
 import PersonalInformation from '../pages/personal/personal-information';
 import PersonalDownload from '../pages/personal/personal-download';
+import PersonalTrack from '../pages/personal/personal-track';
+import PersonalCompany from '../pages/personal/personal-company';
+import PersonalRecharge from '../pages/personal/personal-recharge';
 
 const StatusBarHeight = 44 + parseInt(Platform.OS === 'ios' ? 0 : StatusBar.currentHeight)
 const TITLE_OFFSET = Platform.OS === 'ios' ? 70 : 56;
@@ -49,6 +52,37 @@ export default createAppContainer(createStackNavigator({
     screen: PersonalDownload,
     navigationOptions: {
       title: '我的下载'
+    }
+  },
+  PersonalTrack: {
+    screen: PersonalTrack,
+    navigationOptions: {
+      title: '标准跟踪'
+    }
+  },
+  PersonalCompany: {
+    screen: PersonalCompany,
+    navigationOptions: {
+      title: '企业用户列表'
+    }
+  },
+  PersonalRecharge: {
+    screen: PersonalRecharge,
+    navigationOptions: ({navigation}) => {
+      return {
+        title: '充值记录',
+        headerRight: (
+          <Text
+            style={{
+              marginRight: scaleSize(40),
+              padding: 6,
+              color: '#2878ff',
+              fontSize: px2dp(28)
+            }}
+            onPress={() => {navigation.navigate('PersonalInformation')}}
+          >开票</Text>
+        )
+      }
     }
   }
 }, {
