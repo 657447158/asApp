@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Platform, StatusBar } from 'react-native';
+import { View, Image, Platform, StatusBar } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createStackNavigator } from 'react-navigation-stack'
 
@@ -11,6 +11,8 @@ import PersonalScreen from '../pages/personal'
 import { scaleSize, scaleHeight, px2dp } from '../utils/ScreenUtils';
 
 const StatusBarHeight = 44 + parseInt(Platform.OS === 'ios' ? 0 : StatusBar.currentHeight)
+const TITLE_OFFSET = Platform.OS === 'ios' ? 70 : 56;
+
 const navigationOptions = {
 	headerTransparent: false,
 	headerStyle: {
@@ -26,9 +28,12 @@ const navigationOptions = {
 		textAlign: 'center',
 		fontWeight: 'bold'
 	},
+	headerTitleContainerStyle: {
+        left: TITLE_OFFSET,
+        right: TITLE_OFFSET,
+	},
 	headerTintColor: '#000',
 }
-
 // 首页tab
 const HomeStack = createStackNavigator({
   Home: {
@@ -71,7 +76,15 @@ const InformationStack = createStackNavigator({
 		screen: InformationScreen,
 		navigationOptions: {
 			...navigationOptions,
-			title: '消息中心'
+			title: '消息中心',
+			headerRight: (
+				<View style={{marginRight: scaleSize(40)}}>
+					<Image
+						style={{width: scaleSize(35), height: scaleSize(40)}}
+						source={require('../assets/images/header-right-c.png')}
+					/>
+				</View>
+			)
 		}
 	}
 })
@@ -88,23 +101,29 @@ InformationStack.navigationOptions = {
 const PersonalStack = createStackNavigator({
 	Persnal: {
 		screen: PersonalScreen,
-		navigationOptions: {
-			headerTransparent: true,
-			headerStyle: {
-				height: StatusBarHeight,
-				backgroundColor: 'transparent',
-				borderBottomWidth: 0,
-				elevation: 0,
-				shadowOpacity: 0
-			},
-			headerTitleStyle: {
-				fontSize: px2dp(32),
-				flex: 1,
-				textAlign: 'center',
-				fontWeight: 'bold'
-			},
-			headerTintColor: '#fff',
-			title: '个人中心'
+		navigationOptions: ({navigation}) => {
+			const backgroundColor =  navigation.getParam('backgroundColor')
+			return {
+				...navigationOptions,
+				headerTransparent: true,
+				headerStyle: {
+					height: StatusBarHeight,
+					backgroundColor: backgroundColor ? backgroundColor : 'transparent',
+					borderBottomWidth: 0,
+					elevation: 0,
+					shadowOpacity: 0
+				},
+				headerTintColor: '#fff',
+				title: '个人中心',
+				headerRight: (
+					<View style={{marginRight: scaleSize(40)}}>
+						<Image
+							style={{width: scaleSize(30), height: scaleSize(30)}}
+							source={require('../assets/images/header-right-d.png')}
+						/>
+					</View>
+				)
+			}
 		}
 	}
 })
@@ -124,15 +143,15 @@ export default createBottomTabNavigator({
 	InformationStack,
 	PersonalStack,
 }, {
-  tabBarOptions: {
-	style: {
-		height: scaleHeight(98)
-	},
-	labelStyle: {
-		marginTop: -scaleHeight(20),
-		fontSize: px2dp(20)
-	},
-    activeTintColor: '#59c3f7',
-    inactiveTintColor: '#b6b6c0',
-  }
+	tabBarOptions: {
+		style: {
+			height: scaleHeight(98)
+		},
+		labelStyle: {
+			marginTop: -scaleHeight(20),
+			fontSize: px2dp(20)
+		},
+		activeTintColor: '#59c3f7',
+		inactiveTintColor: '#b6b6c0',
+	}
 })

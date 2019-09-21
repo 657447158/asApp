@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet, StatusBar } from 'react-native'
-import { scaleSize, px2dp } from '../../utils/ScreenUtils';
-import { Input } from 'teaset';
+import { View, Text, Image, FlatList, StyleSheet, StatusBar } from 'react-native'
+import { scaleSize, px2dp, screenW } from '../../utils/ScreenUtils';
+import { Input, ListRow } from 'teaset';
+import ListItem from '../../widget/ListItem';
 
 const StatusBarHeight = StatusBar.currentHeight
 
@@ -9,8 +10,12 @@ export default class Collection extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            placeholder: 'GB'
+            placeholder: 'GB',
+            datasList: [{key: 'a'}, {key: 'b'}, {key: 'd'}, {key: 'e'}, {key: 'f'}, {key: 'g'}, {key: 'h'}, {key: 'i'}, {key: 'j'}, {key: 'k'},{key: 'l'}, {key: 'm'}]
         }
+    }
+    getItem = () => {
+        return <ListItem />
     }
     render () {
         return (
@@ -26,9 +31,11 @@ export default class Collection extends Component {
                     </View>
                     <Text style={styles.cancleTxt}>取消</Text>
                 </View>
-                {/* <View style={styles.listWrap}>
-
-                </View> */}
+                <FlatList
+                    style={styles.listWrap}
+                    data={this.state.datasList}
+                    renderItem={this.getItem}
+                />
             </View>
         )
     }
@@ -44,6 +51,7 @@ const styles = StyleSheet.create({
         top: 0,
         left: 0,
         right: 0,
+        zIndex: 9,
         paddingTop: StatusBarHeight,
         paddingLeft: scaleSize(40),
         paddingRight: scaleSize(40),
@@ -78,5 +86,10 @@ const styles = StyleSheet.create({
 
     },
     listWrap: {
+        flex: 1,
+        paddingTop: scaleSize(96) + StatusBarHeight,
+        paddingLeft: scaleSize(20),
+        paddingRight: scaleSize(20),
+        width: screenW,
     }
 })

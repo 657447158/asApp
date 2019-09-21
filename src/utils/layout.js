@@ -1,4 +1,3 @@
-
 import { scaleSize, px2dp } from './ScreenUtils'
 
 export default {

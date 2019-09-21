@@ -13,8 +13,9 @@ export let pixelRatio = PixelRatio.get();
 export const DEFAULT_DENSITY = 2;
 //px转换成dp
 //以iphone6为基准,如果以其他尺寸为基准的话,请修改下面的defaultWidth和defaultHeight为对应尺寸即可. 以下为2倍图时
-const defaultWidth = 750;
-const defaultHeight = 1336;
+export const defaultWidth = 750;
+export const defaultHeight = 1336;
+
 const w2 = defaultWidth / DEFAULT_DENSITY;
 //px转换成dp
 const h2 = defaultHeight / DEFAULT_DENSITY;
