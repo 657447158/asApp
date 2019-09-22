@@ -106,12 +106,16 @@ export default class Personal extends Component {
                             <Image style={styles.navNext} source={require('../../assets/images/personal/icon-next-b.png')} />
                             <View style={styles.navLine}></View>
                         </TouchableOpacity>
-                        <View style={styles.navItem}>
+                        <TouchableOpacity
+                            activeOpacity={.8}
+                            style={styles.navItem}
+                            onPress={this.navigateTo.bind(this, 'PersonalInvoice')}
+                        >
                             <Image style={{width: scaleSize(45), height: scaleSize(45)}} source={require('../../assets/images/personal/icon-invoice.png')} />
                             <Text style={styles.navText}>开票记录</Text>
                             <Image style={styles.navNext} source={require('../../assets/images/personal/icon-next-b.png')} />
                             <View style={styles.navLine}></View>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                     {/* 退出按钮 */}
                     <Text style={styles.logout}>退出账号</Text>

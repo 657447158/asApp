@@ -34,6 +34,20 @@ const navigationOptions = {
 	},
 	headerTintColor: '#000',
 }
+
+// 底部导航点击事件 这里来统一判断是否有需要跳转登录页
+const stackDefaultOptions = {
+	tabBarOnPress: obj => {
+		console.log('obj');
+		if (obj.navigation.state.routeName === 'PersonalStack') {
+			obj.navigation.navigate('Login')
+		} else {
+			obj.defaultHandler()
+		}
+		// obj.defaultHandler()
+	}
+}
+
 // 首页tab
 const HomeStack = createStackNavigator({
   Home: {
@@ -44,13 +58,14 @@ const HomeStack = createStackNavigator({
   }
 })
 HomeStack.navigationOptions = {
-  tabBarLabel: '首页',
-  tabBarIcon: ({focused}) => (
-	<Image
-		source={focused ? require('../assets/images/tab-a-a.png') : require('../assets/images/tab-a.png')}
-		style={{width: scaleSize(38), height: scaleHeight(40)}}
-	/>
-  )
+	...stackDefaultOptions,
+	tabBarLabel: '首页',
+	tabBarIcon: ({focused}) => (
+		<Image
+			source={focused ? require('../assets/images/tab-a-a.png') : require('../assets/images/tab-a.png')}
+			style={{width: scaleSize(38), height: scaleHeight(40)}}
+		/>
+	)
 }
 // 收藏tab
 const CollectionStack = createStackNavigator({
@@ -62,6 +77,7 @@ const CollectionStack = createStackNavigator({
 	}
 })
 CollectionStack.navigationOptions = {
+	...stackDefaultOptions,
 	tabBarLabel: '收藏',
 	tabBarIcon: ({focused}) => (
 		<Image
@@ -89,6 +105,7 @@ const InformationStack = createStackNavigator({
 	}
 })
 InformationStack.navigationOptions = {
+	...stackDefaultOptions,
 	tabBarLabel: '消息',
 	tabBarIcon: ({focused}) => (
 		<Image
@@ -128,6 +145,7 @@ const PersonalStack = createStackNavigator({
 	}
 })
 PersonalStack.navigationOptions = {
+	...stackDefaultOptions,
 	tabBarLabel: '我的',
 	tabBarIcon: ({focused}) => (
 		<Image
@@ -152,6 +170,6 @@ export default createBottomTabNavigator({
 			fontSize: px2dp(20)
 		},
 		activeTintColor: '#59c3f7',
-		inactiveTintColor: '#b6b6c0',
+		inactiveTintColor: '#b6b6c0'
 	}
 })

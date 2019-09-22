@@ -5,11 +5,13 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { scaleSize, px2dp } from '../utils/ScreenUtils';
 import MainTabNavigator from './MainTabNavigator';
 
+// 个人中心页面
 import PersonalInformation from '../pages/personal/personal-information';
 import PersonalDownload from '../pages/personal/personal-download';
 import PersonalTrack from '../pages/personal/personal-track';
 import PersonalCompany from '../pages/personal/personal-company';
 import PersonalRecharge from '../pages/personal/personal-recharge';
+import PersonalInvoice from '../pages/personal/personal-invoice';
 
 const StatusBarHeight = 44 + parseInt(Platform.OS === 'ios' ? 0 : StatusBar.currentHeight)
 const TITLE_OFFSET = Platform.OS === 'ios' ? 70 : 56;
@@ -84,9 +86,13 @@ export default createAppContainer(createStackNavigator({
         )
       }
     }
+  },
+  PersonalInvoice: {
+    screen: PersonalInvoice,
+    navigationOptions: {
+      title: '开票记录'
+    }
   }
 }, {
-  defaultNavigationOptions: {
-    ...navigationOptions
-  }
+  defaultNavigationOptions: navigationOptions
 }))

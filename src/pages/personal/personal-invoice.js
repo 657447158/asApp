@@ -7,11 +7,14 @@ export default class RechargeList extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.item}>
-                    <Text style={styles.number}>订单编号：DD859512122</Text>
+                    <View style={styles.top}>
+                        <Text style={styles.time}>2019/09/27 14:07:07</Text>
+                        <Text style={styles.status}>已开票 ></Text>
+                    </View>
                     <View style={styles.bottom}>
                         <View style={styles.bottomLeft}>
-                            <Text style={styles.label}>会员充值</Text>
-                            <Text style={styles.time}>2019/7/17 15:35:25</Text>
+                            <Text style={styles.label}>邮寄发票</Text>
+                            <Text style={styles.number}>订单编号：DD080420207</Text>
                         </View>
                         <Text style={styles.amount}>￥500.00</Text>
                     </View>
@@ -37,12 +40,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: scaleSize(15)
     },
-    number: {
+    top: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         paddingBottom: scaleSize(40),
-        fontSize: px2dp(24),
-        color: '#333',
         borderBottomWidth: 1,
         borderBottomColor: '#f2f2f2'
+    },
+    time: {
+        fontSize: px2dp(28),
+        color: '#333',
+    },
+    status: {
+        fontSize: px2dp(28),
+        color: '#ff422f',
+        fontWeight: 'bold'
     },
     bottom: {
         paddingTop: scaleSize(40),
@@ -58,14 +70,14 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#333'
     },
-    time: {
+    number: {
         marginTop: scaleSize(6),
         fontSize: px2dp(22),
         color: '#9b9b9b'
     },
     amount: {
         fontSize: px2dp(36),
-        color: '#ff3c28',
+        color: '#333',
         fontWeight: 'bold'
     }
 })

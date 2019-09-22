@@ -1,14 +1,11 @@
-import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
-import AppNavigator from './AppNavigator'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 
-const AppContainer = createAppContainer(createStackNavigator({
-    Main: {
-        screen: AppNavigator,
-        navigationOptions: {
-            header: null
-        }
-    }
+import AppNavigator from './AppNavigator'
+import AuthNavigator from './AuthNavigator'
+
+const AppContainer = createAppContainer(createSwitchNavigator({
+    Main: AppNavigator,
+    Auth: AuthNavigator
 }))
 
 export default AppContainer
